@@ -1,0 +1,64 @@
+html
+  head
+    title Keycloak Testbed
+    link(rel="stylesheet", href="css/style.css")
+    script(src=env.KEYCLOAK_BASE + '/auth/js/keycloak.js')
+    script(src='js/main.js')
+  body
+    div.login-info
+    ul
+      li KEYCLOAK_BASE: #{env.KEYCLOAK_BASE}
+      li HTTP_PORT: #{env.HTTP_PORT}
+      li HTTPS_PORT: #{env.HTTPS_PORT}
+    div.keycloak-fn
+      h2 Keycloak Initialization Method
+      p
+      | Pick one of these initialization method to log into keycloak.  A successful login
+      | will redirect you back to this page with authentication p[arameters in the URL.
+      |
+      | You will need to click the button a second time for the JavaSCript adaptor to pick
+      | up the authentication information.  In a real application, the keycloak init()
+      | function would be called unconditionally as part of the application startup. 
+      div
+        button(onClick='initKeycloakLoginRequired()') Login Required
+      div
+        button(onClick='initKeycloakCheckSSO()') Check SSO
+      div
+        button(onClick='initKeycloakSilentSSO') Silent SSO
+
+      h2 Client Side Auth
+      div
+        a(href='/') Test Page
+
+    div
+      h2 Keycloak Attributes
+      ul
+        li token:
+          span#k_token
+        li tokenParsed:
+          span#k_tokenParsed
+        li subject:
+          span#k_subject
+        li idToken:
+          span#k_idToken
+        li idTokenParsed:
+          span#k_idTokenParsed
+        li realmAccess:
+          span#k_realmAccess
+        li resourceAccess:
+          span#k_resourceAccess
+        li refreshToken
+          span#k_refreshToken
+        li refreshTokenParsed
+          span#k_refreshTokenParsed
+        li timeSkew:
+          span#k_timeSkew
+        li responseCode:
+          span#k_responseMode
+        li flow:
+          span#k_flow
+        li adapter:
+          span#k_adapter
+        li responseType:
+          span#k_responseType
+      button(onClick='refreshKeycloakInfo()') Refresh

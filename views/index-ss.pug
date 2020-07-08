@@ -1,0 +1,43 @@
+html
+  head
+    title Keycloak Testbed
+    link(rel="stylesheet", href="css/style.css")
+  body
+    div.login-info
+    ul
+      li KEYCLOAK_BASE: #{env.KEYCLOAK_BASE}
+      li HTTP_PORT: #{env.HTTP_PORT}
+      li HTTPS_PORT: #{env.HTTPS_PORT}
+    
+      h2 Keycloak Functions
+      div
+        a(href='/logout') Logout
+
+      h2 Client Side Auth
+      div
+        a(href='/index') Test Page
+
+    div
+      h2 Secure Pages
+      ul
+        li
+          h3 Simple Authentication
+          ul
+            li
+              a(href='/check-sso') Page protected with keycloak.checkSso()
+            li
+              a(href='/complain') Page protected with keycloak.protect()
+        li
+          h3 Role-based Authorization
+          ul
+            li
+              a(href='/special') Secure a resource with an application role: keycloak.protect('role')
+            li
+              a(href='/extra-special') Secure a resource with an application role from a different application: keycloak.protect('app:role')
+        li
+          h3 Resource-based Authorization
+          ul
+            li
+              a(href='/apis/me-token') /apis/me-token
+            li
+              a(href='/apis/me') /apis/me

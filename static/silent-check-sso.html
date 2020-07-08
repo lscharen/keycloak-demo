@@ -1,0 +1,13 @@
+<!--
+    The page at the silent check-sso redirect uri is loaded in the iframe after
+    successfully checking your authentication state and retrieving the tokens
+    from the Keycloak server. It has no other task than sending the received tokens
+    to the main application.
+-->
+<html>
+<body>
+    <script>
+        parent.postMessage(location.href, location.origin);
+    </script>
+</body>
+</html>
