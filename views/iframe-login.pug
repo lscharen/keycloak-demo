@@ -1,0 +1,25 @@
+html
+  head
+    title Keycloak iframe login
+    link(rel="stylesheet", href="css/style.css")
+    script(src=env.KEYCLOAK_BASE + '/auth/js/keycloak.js')
+    script.
+      const keycloak = new Keycloak('/keycloak-frontend.json');
+      keycloak.init();
+
+      function showLoginIFrame() {
+        const iframe = document.getElementById('login-frame');
+        iframe.src = '/iframe-login-frame'
+      }
+
+      window.addEventListener('message', (evt) => {
+        const data = event.data;
+        document.getElementsByTagName('body')[0].style.backgroundColor = data.authenticated ? 'green' : 'red';
+      });
+
+  body
+    button(onClick='showLoginIFrame()') Login
+    br
+    button(onClick='keycloak.logout()') Logout
+    br
+    iframe#login-frame(src="about:blank", frameborder="0", width="600" height="500")

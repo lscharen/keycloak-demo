@@ -1,0 +1,16 @@
+html
+  head
+    script(src=env.KEYCLOAK_BASE + '/auth/js/keycloak.js')
+    script.
+      // In the keycloak realm, remove the X-Frame-Options setting under
+      // Security Defenses because it is obsoleted by the Content-Security-Policy
+      // headers
+      const keycloak = new Keycloak('/keycloak-frontend.json');
+      keycloak.init({ onLoad: 'login-required' }).then(function(authenticated) {
+        if (window.parent) {
+          window.parent.postMessage({ authenticated: true }, '*');
+        }
+      }).catch(function() {
+          console.log('failed to initialize');
+      });
+  body

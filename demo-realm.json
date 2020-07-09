@@ -2,7 +2,7 @@
   "id": "demo",
   "realm": "demo",
   "displayName": "Demo",
-  "notBefore": 0,
+  "notBefore": 1594181468,
   "revokeRefreshToken": false,
   "refreshTokenMaxReuse": 0,
   "accessTokenLifespan": 300,
@@ -678,6 +678,7 @@
         "role_list",
         "roles",
         "profile",
+        "user:profile",
         "email"
       ],
       "optionalClientScopes": [
@@ -731,6 +732,21 @@
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
       "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "896ae03c-07a9-42b5-b30d-0c0b8e5a249a",
+          "name": "geoserver-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "account",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "included.custom.audience": "geoserver"
+          }
+        }
+      ],
       "defaultClientScopes": [
         "web-origins",
         "role_list",
@@ -1313,6 +1329,16 @@
       ]
     },
     {
+      "id": "1fb20b79-9a45-4c32-b5aa-19adb66b97ce",
+      "name": "user:profile",
+      "description": "Access to the user profile",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true"
+      }
+    },
+    {
       "id": "49856724-73ab-4195-94c1-89f5a1d4ab9f",
       "name": "web-origins",
       "description": "OpenID Connect scope for add allowed web origins to the access token",
@@ -1351,8 +1377,8 @@
     "contentSecurityPolicyReportOnly": "",
     "xContentTypeOptions": "nosniff",
     "xRobotsTag": "none",
-    "xFrameOptions": "SAMEORIGIN",
-    "contentSecurityPolicy": "frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+    "xFrameOptions": "",
+    "contentSecurityPolicy": "frame-src 'self'; frame-ancestors: 'self' https://localhost:*; object-src 'none'",
     "xXSSProtection": "1; mode=block",
     "strictTransportSecurity": "max-age=31536000; includeSubDomains"
   },

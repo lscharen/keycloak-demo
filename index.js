@@ -71,6 +71,16 @@ app.get('/index', (req, res) => {
     res.render('index');
 });
 
+// Special page for iframe-login
+app.get('/iframe-login', (req, res) => {
+    res.render('iframe-login');
+});
+
+// The actual content loaded into the iframe for login
+app.get('/iframe-login-frame', (req, res) => {
+    res.render('iframe-login-frame');
+});
+
 // To check that a user is authenticated before accessing a resource, simply use keycloak.checkSso().
 // It will only authenticate if the user is already logged-in. If the user is not logged-in, the browser
 // will be redirected back to the originally-requested URL and remain unauthenticated:
